@@ -1,0 +1,14 @@
+spring:
+  rabbitmq:
+    host: 192.168.0.106
+    port: 5672
+    username: tomcat
+    password: tomcat
+    virtual-host: MsgCenter
+
+listeningQueue:
+    json: JsonDeviceMsgQueue
+    byte: ByteDeviceMsgQueue
+
+server:
+  port: 8081
