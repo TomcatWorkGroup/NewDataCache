@@ -6,7 +6,7 @@
 	<groupId>com.itdreamworks</groupId>
 	<artifactId>newdatacache</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>newdatacache</name>
 	<description>new data cache application</description>
@@ -55,6 +55,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>datacache</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

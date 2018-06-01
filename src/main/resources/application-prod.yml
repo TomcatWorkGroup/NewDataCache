@@ -9,3 +9,5 @@ spring:
 listeningQueue:
     json: JsonDeviceMsgQueue
     byte: ByteDeviceMsgQueue
+server:
+  port: 8080

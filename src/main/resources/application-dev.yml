@@ -1,9 +1,9 @@
 spring:
   rabbitmq:
-    host: 192.168.0.106
+    host: 39.106.168.77
     port: 5672
     username: tomcat
-    password: tomcat
+    password: 80201288
     virtual-host: MsgCenter
 
 listeningQueue:
