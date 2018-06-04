@@ -6,6 +6,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 public class ApplicationStartup implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-       // contextRefreshedEvent.
+        // contextRefreshedEvent.
     }
 }

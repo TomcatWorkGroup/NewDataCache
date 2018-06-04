@@ -146,14 +146,15 @@ public class DeviceSnapshot {
         this.runHours = runHours;
     }
 
-    public static List<DeviceSnapshot> getDeviceSnapshotList(List<Device> devices){
+    public static List<DeviceSnapshot> getDeviceSnapshotList(List<Device> devices) {
         ArrayList<DeviceSnapshot> ls = new ArrayList<>(devices.size());
-        for (Device d : devices){
+        for (Device d : devices) {
             ls.add(DeviceSnapshot.getDeviceSnapshot(d));
         }
         return ls;
     }
-    public String toJson(){
+
+    public String toJson() {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.writeValueAsString(this);
@@ -162,7 +163,8 @@ public class DeviceSnapshot {
         }
         return null;
     }
-    public static DeviceSnapshot getDeviceSnapshot(Device device){
+
+    public static DeviceSnapshot getDeviceSnapshot(Device device) {
         DeviceSnapshot snapshot = new DeviceSnapshot();
         snapshot.deviceNo = device.getDeviceNo();
         snapshot.comeDate = device.getComeDate();

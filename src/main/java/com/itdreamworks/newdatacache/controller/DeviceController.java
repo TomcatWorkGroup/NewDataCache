@@ -31,7 +31,7 @@ public class DeviceController {
         List<byte[]> data = cacheUtil.getCacheDatas(deviceKeys);
         try {
             ServletOutputStream stream = response.getOutputStream();
-            for(byte[] d : data){
+            for (byte[] d : data) {
                 stream.write(d);
             }
             stream.flush();
@@ -47,9 +47,9 @@ public class DeviceController {
      * @return
      */
     @PostMapping(value = "/get")
-    public void getDeviceInfo(@RequestParam(name = "id") String deviceId,HttpServletResponse response) {
+    public void getDeviceInfo(@RequestParam(name = "id") String deviceId, HttpServletResponse response) {
         byte[] data = cacheUtil.getCacheData(deviceId);
-        if(null == data)
+        if (null == data)
             return;
         try {
             ServletOutputStream stream = response.getOutputStream();
@@ -59,5 +59,4 @@ public class DeviceController {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,9 +1,6 @@
 package com.itdreamworks.newdatacache.utils;
 
-import com.itdreamworks.newdatacache.entity.Device;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,68 +8,38 @@ import java.util.List;
 
 @Component
 public class CacheUtil {
-    private static final String CACHE_JSON_DEVICE_INFO = "cache_json_device_info";
-
-    private static final String CACHE_BYTE_DEVICE_INFO = "cache_byte_device_info";
-
     @Autowired
-    CacheManager cacheManager;
+    private ByteCacheUtil byteCacheUtil;
+    @Autowired
+    private Byte2CacheUtil byte2CacheUtil;
 
-
-    public Cache getCache(String cacheName){
-        return cacheManager.getCache(cacheName);
-    }
-
-    public byte[] getCacheData(String key){
-        Cache cache = getCache(CACHE_BYTE_DEVICE_INFO);
-        Cache.ValueWrapper element = cache.get(key);
-        if(null != element){
-            return (byte[]) element.get();
+    public byte[] getCacheData(String key) {
+        if (key.length() == 10) {
+            return byteCacheUtil.getCacheData(key);
+        } else if (key.length() == 20) {
+            return byte2CacheUtil.getCacheData(key);
         }
         return null;
     }
 
-    public void putData(String key,byte[] data){
-        Cache cache = getCache(CACHE_BYTE_DEVICE_INFO);
-        cache.put(key,data);
+    public void putData(String key, byte[] data) {
+        if(key.length() == 10){
+            byteCacheUtil.putData(key, data);
+        }else if(key.length() == 20){
+            byte2CacheUtil.putData(key, data);
+            byteCacheUtil.putData(key.substring(10), data);
+        }
     }
 
-    public List<byte[]> getCacheDatas(String[] keys){
+    public List<byte[]> getCacheDatas(String[] keys) {
         ArrayList<byte[]> ls = new ArrayList<>(keys.length);
-        Cache cache = getCache(CACHE_BYTE_DEVICE_INFO);
-        for(String key : keys){
-            Cache.ValueWrapper element = cache.get(key);
-            if(null != element){
-                ls.add((byte[]) element.get());
-            }
-        }
-        return ls;
-    }
-
-    public Device getDevice(String key){
-        Cache cache = getCache(CACHE_JSON_DEVICE_INFO);
-        Cache.ValueWrapper element = cache.get(key);
-        if(null != element){
-            return (Device) element.get();
-        }
-        return null;
-    }
-
-    public void putDevice(Device device){
-        Cache cache = getCache(CACHE_JSON_DEVICE_INFO);
-        cache.put(device.getDeviceNo(),device);
-    }
-
-    public List<Device> getDevices(String[] keys){
-        ArrayList<Device> ls = new ArrayList<>(keys.length);
-        Cache cache = getCache(CACHE_JSON_DEVICE_INFO);
-        for(String key : keys){
-            Cache.ValueWrapper element = cache.get(key);
-            if(null != element){
-                ls.add((Device) element.get());
+        if (keys.length > 0) {
+            if (keys[0].length() == 10) {
+                return byteCacheUtil.getCacheDatas(keys);
+            } else if (keys[0].length() == 20) {
+                return byte2CacheUtil.getCacheDatas(keys);
             }
         }
         return ls;
     }
 }
-

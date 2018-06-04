@@ -1,7 +1,6 @@
 package com.itdreamworks.newdatacache.entity;
 
 
-
 import com.itdreamworks.newdatacache.annotation.Title;
 import com.itdreamworks.newdatacache.config.DeviceFocusConfig;
 import com.itdreamworks.newdatacache.config.SettingConfig;
@@ -6053,7 +6052,7 @@ public class Device implements Serializable {
                     Field field = this.getClass().getDeclaredField(conf.getItem1());
                     this.focusItem1 = field.getFloat(this);
                     this.focusItem1Text = field.getAnnotation(Title.class).value();
-                }  catch (NoSuchFieldException e) {
+                } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -6070,7 +6069,8 @@ public class Device implements Serializable {
                 try {
                     Field field = this.getClass().getDeclaredField(conf.getItem3());
                     this.focusItem3 = field.getFloat(this);
-                    this.focusItem3Text = field.getAnnotation(Title.class).value();} catch (IllegalAccessException e) {
+                    this.focusItem3Text = field.getAnnotation(Title.class).value();
+                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (NoSuchFieldException e) {
                     e.printStackTrace();
