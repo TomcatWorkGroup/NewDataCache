@@ -13,6 +13,7 @@ public class NjrtT2RunByteMsgReceiver extends BaseReceiver {
     @Autowired
     private com.itdreamworks.newdatacache.utils.CacheUtil cacheUtil;
 
+    
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue("ByteNjrtMsgQueue"),
             exchange = @Exchange(EXCHANGE_NAME),
