@@ -5,17 +5,3 @@ spring:
     type: ehcache
     ehcache:
       config: ehcache.xml
-devicefocus:
-  setting:
-  -
-    power: 0
-    media: 0
-    item1: rukouwendu
-    item2: chukouwendu
-    item3: paiyanwendu
-  -
-    power: 0
-    media: 1
-    item1: zhengqiyali
-    item2: paiyanwendu
-    item3:

@@ -5,9 +5,5 @@ spring:
     username: tomcat
     password: 80201288
     virtual-host: MsgCenter
-
-listeningQueue:
-    json: JsonDeviceMsgQueue
-    byte: ByteDeviceMsgQueue
 server:
   port: 8080
