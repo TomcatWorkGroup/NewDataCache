@@ -8,19 +8,22 @@ import java.math.BigInteger;
 
 
 @Component
-public class PLcRunByteMsgReceiver extends BaseReceiver {
+public class NjrtT2RunByteMsgReceiver extends BaseReceiver {
 
     @Autowired
     private com.itdreamworks.newdatacache.utils.CacheUtil cacheUtil;
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue("BytePlcMsgQueue"),
+            value = @Queue("ByteNjrtMsgQueue"),
             exchange = @Exchange(EXCHANGE_NAME),
-            key = "PlcMsg"
+            key = "NJRT_T2"
     ))
     @RabbitHandler
     public void process(byte[] msg) {
-        String key = String.format("%1$010d", new BigInteger(new byte[]{msg[5], msg[6], msg[7], msg[8]}).intValue());
+        //String deviceNo = new String(msg, 67, 20);
+        String key = String.format("%d%d%d%d%d%d%d%d%d%d",
+                msg[68],msg[70],msg[72],msg[74],msg[76],
+                msg[78],msg[80],msg[82],msg[84],msg[86]);
         cacheUtil.putData(key, msg);
     }
 }

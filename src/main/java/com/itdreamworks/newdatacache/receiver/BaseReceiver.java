@@ -10,5 +10,6 @@ import java.nio.charset.Charset;
 @Component
 public class BaseReceiver {
     static Charset CHAR_SET = Charset.forName("utf-8");
+    static final String EXCHANGE_NAME = "DeviceMsgExchange";
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 }
