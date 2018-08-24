@@ -16,7 +16,7 @@ public class PLcRunByteMsgReceiver extends BaseReceiver {
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue("BytePlcMsgQueue"),
             exchange = @Exchange(EXCHANGE_NAME),
-            key = "PlcMsg"
+            key = "BytePlcMsg"
     ))
     @RabbitHandler
     public void process(byte[] msg) {
